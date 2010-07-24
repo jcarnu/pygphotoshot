@@ -124,8 +124,8 @@ class monprogramme:
 	gtk.main_quit()
 
     def on_takeShot_clicked(self, widget):
-        pyshot.takePhoto()
-        self.image.set_from_file('capt0000.cr2')
+        filename = pyshot.takePhoto()
+        self.image.set_from_file(filename)
 
 
        

@@ -21,17 +21,20 @@ import subprocess
 import shlex
 import re
 import string
+import time
 gphoto_options={
     'available':'-a',
     'settings':'--set-config capture=on --list-config',
     'settings_choices':'--get-config "%s"',
-    'shoot': '--capture-image-and-download --force-overwrite',
+    'shoot': '--capture-image-and-download --force-overwrite --filename %s',
 }
 
 def takePhoto():
-    shoot_args = shlex.split('gphoto2 %s'%gphoto_options['shoot'])
+    filename = "capt-%d"%time.time()
+    shoot_args = shlex.split('gphoto2 %s'%gphoto_options['shoot']%filename)
     shoot_pipe = subprocess.Popen(shoot_args)
     shoot_pipe.wait()
+    return filename
     
 
 def getCameraInfos():
