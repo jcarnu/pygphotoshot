@@ -25,7 +25,14 @@ gphoto_options={
     'available':'-a',
     'settings':'--set-config capture=on --list-config',
     'settings_choices':'--get-config "%s"',
+    'shoot': '--capture-image-and-download --force-overwrite',
 }
+
+def takePhoto():
+    shoot_args = shlex.split('gphoto2 %s'%gphoto_options['shoot'])
+    shoot_pipe = subprocess.Popen(shoot_args)
+    shoot_pipe.wait()
+    
 
 def getCameraInfos():
     reChoice = re.compile(r'Choice:\s+(\d+)\s+(.*)$')

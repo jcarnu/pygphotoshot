@@ -7,6 +7,9 @@ import gobject
 import pygphotoshot as pyshot
 import gphotoparser as poc
 
+gphoto2shootcommand = "gphoto2 --capture-image-and-download"
+
+
 class TemplateCombo():
     def __init__(self,label="choice",choices=[]):
         self.widbuilder = gtk.Builder()
@@ -101,7 +104,11 @@ class monprogramme:
         self.image = gtk.Image()
         self.image.set_from_stock(gtk.STOCK_MISSING_IMAGE,gtk.ICON_SIZE_LARGE_TOOLBAR)
         self.image.show()
-        self.hpaned.add2(self.image)
+        self.scrolled = gtk.ScrolledWindow()
+
+        self.scrolled.add_with_viewport(self.image)
+        self.scrolled.show()
+        self.hpaned.add2(self.scrolled)
         self.subsections.show()
         
         
@@ -115,6 +122,10 @@ class monprogramme:
         
     def delete(self, source=None, event=None):
 	gtk.main_quit()
+
+    def on_takeShot_clicked(self, widget):
+        pyshot.takePhoto()
+        self.image.set_from_file('capt0000.cr2')
 
 
        
