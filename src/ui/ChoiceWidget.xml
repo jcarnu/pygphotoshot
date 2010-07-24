@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<interface>
+  <requires lib="gtk+" version="2.16"/>
+  <!-- interface-naming-policy toplevel-contextual -->
+  <object class="GtkHBox" id="ChoiceWidget">
+    <property name="visible">True</property>
+    <child>
+      <object class="GtkLabel" id="selectLabel">
+        <property name="visible">True</property>
+        <property name="label" translatable="yes">label</property>
+        <property name="use_underline">True</property>
+      </object>
+      <packing>
+        <property name="position">0</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkComboBox" id="selectComboChoices">
+        <property name="visible">True</property>
+        <property name="model">selectComboChoiceModel</property>
+      </object>
+      <packing>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <placeholder/>
+    </child>
+  </object>
+  <object class="GtkListStore" id="selectComboChoiceModel"/>
+</interface>
